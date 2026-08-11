@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class ImagesRowWidget extends StatelessWidget {
   const ImagesRowWidget({
@@ -14,9 +14,17 @@ class ImagesRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset(assetsImagePath, width: MediaQuery.of(context).size.width * 0.5 - 10, height: 200),
+        Image.asset(
+          assetsImagePath,
+          width: MediaQuery.of(context).size.width * 0.5 - 10,
+          height: 200,
+        ),
         Spacer(),
-        Image.network(networkImageUrl, width: MediaQuery.of(context).size.width * 0.5 - 10, height: 200),
+        Image.network(
+          networkImageUrl,
+          width: MediaQuery.of(context).size.width * 0.5 - 10,
+          height: 200,
+        ),
       ],
     );
   }
