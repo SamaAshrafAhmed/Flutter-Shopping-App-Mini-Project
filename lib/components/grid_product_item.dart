@@ -23,7 +23,7 @@ class GridProductItem extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ProductImage(
               imageUrl: product.imageUrl,
-              height: 120,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 240,
               width: double.infinity,
               radius: 10.0,
             ),

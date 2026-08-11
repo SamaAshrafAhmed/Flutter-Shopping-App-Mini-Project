@@ -16,9 +16,11 @@ class AddToCartButtton extends StatelessWidget {
         ),
         child: IconButton(
           iconSize: 15,
-          icon: const Icon(Icons.shopping_cart),
+          icon: const Icon(Icons.add_shopping_cart),
           onPressed: () {
-            // Handle favorite button press
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Item added to the cart")),
+            );
           },
         ),
       ),

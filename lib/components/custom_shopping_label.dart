@@ -6,10 +6,10 @@ class CustomShopppingLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 20, top: 10, bottom: 5),
       child: Text(
         text,
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.start,
         style: TextStyle(
           fontFamily: 'Suwannaphum',
           fontSize: 18,
