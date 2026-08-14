@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AddToCartButtton extends StatelessWidget {
-  const AddToCartButtton({super.key});
+class AddToCartButton extends StatelessWidget {
+  const AddToCartButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,16 @@ class AddToCartButtton extends StatelessWidget {
           icon: const Icon(Icons.add_shopping_cart),
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Item added to the cart")),
+              const SnackBar(
+                backgroundColor: Color(0xFF5F4C5B),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                ),
+                content: Text("Item added to the cart"),
+              ),
             );
           },
         ),

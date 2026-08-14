@@ -12,7 +12,7 @@ class ProductsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 850,
+      height: 500,
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.only(bottom: 10),
@@ -25,7 +25,7 @@ class ProductsListView extends StatelessWidget {
               color: Colors.white,
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: 150,
+                height: 80,
                 child: Row(
                   children: [
                     Expanded(

@@ -1,4 +1,4 @@
-import 'package:first_flutter_project/screens/shopping_screen.dart';
+import 'package:first_flutter_project/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,8 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'My App',
-      home: ShoppingScreen(),
+      home: SignUpPage(),
     );
   }
-
- }
+}

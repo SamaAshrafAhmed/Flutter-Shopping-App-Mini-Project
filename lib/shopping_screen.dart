@@ -1,12 +1,17 @@
 import 'package:first_flutter_project/components/custom_grid_vew.dart';
 import 'package:first_flutter_project/components/custom_shopping_label.dart';
 import 'package:first_flutter_project/components/products_list_view.dart';
-import 'package:first_flutter_project/components/products_pageView.dart';
+import 'package:first_flutter_project/components/products_page_view.dart';
 import 'package:first_flutter_project/models/product.dart';
 import 'package:flutter/material.dart';
 
-class ShoppingScreen extends StatelessWidget {
-  ShoppingScreen({super.key});
+class ShoppingScreen extends StatefulWidget {
+  const ShoppingScreen({super.key});
+  @override
+  State<ShoppingScreen> createState() => _ShoppingScreenState();
+}
+
+class _ShoppingScreenState extends State<ShoppingScreen> {
   final List<Product> products = [
     Product(
       name: 'Lily Bouquet',
@@ -45,6 +50,7 @@ class ShoppingScreen extends StatelessWidget {
       price: 129.99,
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -62,9 +68,9 @@ class ShoppingScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          CustomShopppingLabel(text: 'Our Products'),
+      body: SingleChildScrollView(
+        child: 
+        Column(children: [  CustomShopppingLabel(text: 'Our Products'),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
@@ -77,7 +83,7 @@ class ShoppingScreen extends StatelessWidget {
           CustomShopppingLabel(text: 'Hot Offers'),
           SizedBox(height: 10),
           ProductsListView(products: products),
-        ],
+        ],)
       ),
     );
   }

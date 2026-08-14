@@ -40,7 +40,7 @@ class GridProductItem extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15.0),
                 child: ProductPrice(price: product.price.toStringAsFixed(2)),
               ),
-              AddToCartButtton(),
+              AddToCartButton(),
             ],
           ),
         ],
