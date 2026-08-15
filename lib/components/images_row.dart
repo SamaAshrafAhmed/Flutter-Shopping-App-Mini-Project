@@ -12,6 +12,7 @@ class ImagesRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Split the width evenly so both images stay side by side.
     return Row(
       children: [
         Image.asset(

@@ -64,4 +64,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get imagesDisplayed => 'The two images are displayed';
+
+  @override
+  String get lilyBouquet => 'Lily Bouquet';
+
+  @override
+  String get purpleBouquet => 'Purple Bouquet';
+
+  @override
+  String get crochetBouquet => 'Crochet Bouquet';
+
+  @override
+  String get purpleTulip => 'Purple Tulip';
+
+  @override
+  String get orchidFlower => 'Orchid Flower';
+
+  @override
+  String get daisyFlower => 'Daisy Flower';
 }

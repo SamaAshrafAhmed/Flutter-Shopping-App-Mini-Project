@@ -1,17 +1,30 @@
-# first_flutter_project
+# First Flutter Project
 
-A new Flutter project.
+A Flutter shopping app with a sign-up form, shopping screen, responsive product grid, and Arabic/English localization using ARB files.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Image and text screen
+- Shopping screen with product page view, grid, and hot offers list
+- Sign-up validation for name, email, password, and confirm password
+- Success dialog with fade transition to shopping screen
+- ARB localization for English and Arabic
+- Responsive layout using MediaQuery
 
-A few resources to get you started if this is your first Flutter project:
+## Run the app
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+```bash
+flutter pub get
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Run tests
+
+```bash
+flutter test
+```
+
+## Notes
+
+- The app uses Flutter built-in localization instead of a custom package.
+- The app follows the device system locale by default.

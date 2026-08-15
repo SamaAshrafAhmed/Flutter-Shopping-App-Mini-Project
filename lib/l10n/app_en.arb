@@ -18,5 +18,11 @@
   "hotOffers": "Hot Offers",
   "itemAddedToCart": "Item added to the cart",
   "firstProjectTitle": "My First Project",
-  "imagesDisplayed": "The two images are displayed"
+  "imagesDisplayed": "The two images are displayed",
+  "lilyBouquet": "Lily Bouquet",
+  "purpleBouquet": "Purple Bouquet",
+  "crochetBouquet": "Crochet Bouquet",
+  "purpleTulip": "Purple Tulip",
+  "orchidFlower": "Orchid Flower",
+  "daisyFlower": "Daisy Flower"
 }

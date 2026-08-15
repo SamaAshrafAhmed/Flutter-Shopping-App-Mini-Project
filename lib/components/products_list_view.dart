@@ -14,6 +14,7 @@ class ProductsListView extends StatelessWidget {
     return SizedBox(
       height: 500,
       child: ListView.builder(
+        //no scrolling for the list view, it will be scrolled by the main scroll view
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.only(bottom: 10),
         itemCount: 5,

@@ -64,4 +64,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get imagesDisplayed => 'تم عرض الصورتين';
+
+  @override
+  String get lilyBouquet => 'باقة الليلي';
+
+  @override
+  String get purpleBouquet => 'باقة بنفسجية';
+
+  @override
+  String get crochetBouquet => 'باقة كروشيه';
+
+  @override
+  String get purpleTulip => 'توليب بنفسجي';
+
+  @override
+  String get orchidFlower => 'زهرة أوركيد';
+
+  @override
+  String get daisyFlower => 'زهرة دايسية';
 }

@@ -18,6 +18,7 @@ class AddToCartButton extends StatelessWidget {
         child: IconButton(
           iconSize: 15,
           icon: const Icon(Icons.add_shopping_cart),
+          // Show a snackbar when the button is pressed.
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

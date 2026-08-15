@@ -1,4 +1,4 @@
-import 'package:first_flutter_project/components/custom_text.dart';
+import 'package:first_flutter_project/components/app_title.dart';
 import 'package:first_flutter_project/components/images_row.dart';
 import 'package:first_flutter_project/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class ImageTextScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          CustomText(text: AppLocalizations.of(context)!.imagesDisplayed),
+          AppTitle(text: AppLocalizations.of(context)!.imagesDisplayed),
         ],
       ),
     );

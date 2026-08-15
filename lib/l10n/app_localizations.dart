@@ -211,6 +211,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The two images are displayed'**
   String get imagesDisplayed;
+
+  /// No description provided for @lilyBouquet.
+  ///
+  /// In en, this message translates to:
+  /// **'Lily Bouquet'**
+  String get lilyBouquet;
+
+  /// No description provided for @purpleBouquet.
+  ///
+  /// In en, this message translates to:
+  /// **'Purple Bouquet'**
+  String get purpleBouquet;
+
+  /// No description provided for @crochetBouquet.
+  ///
+  /// In en, this message translates to:
+  /// **'Crochet Bouquet'**
+  String get crochetBouquet;
+
+  /// No description provided for @purpleTulip.
+  ///
+  /// In en, this message translates to:
+  /// **'Purple Tulip'**
+  String get purpleTulip;
+
+  /// No description provided for @orchidFlower.
+  ///
+  /// In en, this message translates to:
+  /// **'Orchid Flower'**
+  String get orchidFlower;
+
+  /// No description provided for @daisyFlower.
+  ///
+  /// In en, this message translates to:
+  /// **'Daisy Flower'**
+  String get daisyFlower;
 }
 
 class _AppLocalizationsDelegate

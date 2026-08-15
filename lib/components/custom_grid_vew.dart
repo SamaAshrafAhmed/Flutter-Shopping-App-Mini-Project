@@ -7,9 +7,11 @@ class ProductsGridView extends StatelessWidget {
   final List<Product> products;
   @override
   Widget build(BuildContext context) {
+    // Fixed height keeps the grid stable inside the scroll view.
     return SizedBox(
       height: 600,
       child: GridView(
+        //no scrolling for the grid view, it will be scrolled by the main scroll view
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.all(8.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
