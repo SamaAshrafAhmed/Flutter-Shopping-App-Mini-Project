@@ -18,13 +18,7 @@ flutter pub get
 flutter run
 ```
 
-## Run tests
-
-```bash
-flutter test
-```
-
 ## Notes
 
-- The app uses Flutter built-in localization instead of a custom package.
+- The app uses Flutter built-in localization.
 - The app follows the device system locale by default.
