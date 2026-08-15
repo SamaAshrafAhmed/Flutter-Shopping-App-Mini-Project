@@ -1,0 +1,22 @@
+{
+  "@@locale": "en",
+  "signUp": "Sign Up",
+  "fullName": "Full Name",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "fieldRequired": "This field is required",
+  "nameMustStartCapital": "Name must start with a capital letter",
+  "emailMustContain": "Email must contain @ symbol",
+  "passwordMinLength": "Password must be at least 6 characters long",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "successfulRegistration": "Account created successfully",
+  "ok": "OK",
+  "products": "Products",
+  "ourProducts": "Our Products",
+  "eGP": "EGP",
+  "hotOffers": "Hot Offers",
+  "itemAddedToCart": "Item added to the cart",
+  "firstProjectTitle": "My First Project",
+  "imagesDisplayed": "The two images are displayed"
+}

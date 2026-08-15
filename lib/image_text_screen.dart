@@ -1,5 +1,6 @@
 import 'package:first_flutter_project/components/custom_text.dart';
 import 'package:first_flutter_project/components/images_row.dart';
+import 'package:first_flutter_project/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class ImageTextScreen extends StatelessWidget {
@@ -10,7 +11,8 @@ class ImageTextScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFC7A0BF),
-        title: const Text('My First Project'),
+        title: Text(AppLocalizations.of(context)!.firstProjectTitle),
+        centerTitle: true,
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
@@ -25,7 +27,7 @@ class ImageTextScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          CustomText(text: 'The two images are displayed'),
+          CustomText(text: AppLocalizations.of(context)!.imagesDisplayed),
         ],
       ),
     );

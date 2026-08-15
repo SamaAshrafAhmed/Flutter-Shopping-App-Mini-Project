@@ -1,3 +1,4 @@
+import 'package:first_flutter_project/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class AddToCartButton extends StatelessWidget {
@@ -6,7 +7,7 @@ class AddToCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 8.0, left: 8.0),
       child: Container(
         height: 30,
         width: 30,
@@ -19,7 +20,7 @@ class AddToCartButton extends StatelessWidget {
           icon: const Icon(Icons.add_shopping_cart),
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
+              SnackBar(
                 backgroundColor: Color(0xFF5F4C5B),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -27,7 +28,7 @@ class AddToCartButton extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ),
                 ),
-                content: Text("Item added to the cart"),
+                content: Text(AppLocalizations.of(context)!.itemAddedToCart),
               ),
             );
           },

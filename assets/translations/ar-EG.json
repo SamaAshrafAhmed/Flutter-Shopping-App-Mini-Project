@@ -1,0 +1,21 @@
+{
+    "sign_up": "تسجيل",
+    "full_name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirm_password": "تأكيد كلمة المرور",
+    "field_required": "هذا الحقل مطلوب",
+    "name_first_capital": "الاسم يجب أن يبدأ بحرف كبير",
+    "email_must_contain": "يجب أن يحتوي البريد الإلكتروني على رمز @",
+    "password_min_length": "يجب أن تكون كلمة المرور على الأقل 6 أحرف",
+    "passwords_do_not_match": "كلمات المرور لا تتطابق",
+    "successful_registration": "تم إنشاء الحساب بنجاح",
+    "ok": "حسناً",
+    "products": "المنتجات",
+    "our_products": "منتجاتنا",
+    "hot_offers": "عروض حصرية",
+    "egp": "جم",
+    "item_added_to_cart": "تمت إضافة العنصر إلى السلة",
+    "first_project_title": "مشروعي الأول",
+    "images_displayed": "تم عرض الصورتين"
+}

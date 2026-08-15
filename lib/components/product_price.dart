@@ -1,3 +1,4 @@
+import 'package:first_flutter_project/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class ProductPrice extends StatelessWidget {
@@ -8,12 +9,12 @@ class ProductPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '$price EGP',
-      style: TextStyle(
+      '$price ${AppLocalizations.of(context)!.eGP}',
+      style: const TextStyle(
         fontFamily: 'Suwannaphum',
         fontSize: 12,
         fontWeight: FontWeight.bold,
-        color: const Color(0xFFA52489),
+        color: Color(0xFFA52489),
       ),
     );
   }

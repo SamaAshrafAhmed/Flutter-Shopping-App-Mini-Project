@@ -1,3 +1,4 @@
+import 'package:first_flutter_project/l10n/app_localizations.dart';
 import 'package:first_flutter_project/shopping_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,112 +10,155 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final formKey = GlobalKey<FormState>();
+  String? password;
+
+  void _goToShoppingScreen() {
+    Navigator.of(context).pushReplacement(
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 800),
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return const ShoppingScreen();
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInOut,
+            ),
+            child: child,
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    String? password;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Sign Up',
-            style: TextStyle(
+            AppLocalizations.of(context)!.signUp,
+            style: const TextStyle(
               fontFamily: 'Suwannaphum',
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFFA52489),
+              color: Color(0xFFA52489),
             ),
           ),
+
           Form(
             key: formKey,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your full name';
+                        return AppLocalizations.of(context)!.fieldRequired;
                       } else if (!value.startsWith(RegExp('[A-Z]'))) {
-                        return 'Name must start with a capital letter';
+                        return AppLocalizations.of(
+                          context,
+                        )!.nameMustStartCapital;
                       }
                       return null;
                     },
-                    decoration: InputDecoration(labelText: 'Full Name'),
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.fullName,
+                    ),
                   ),
+
                   TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
+                        return AppLocalizations.of(context)!.fieldRequired;
                       }
+
                       if (!value.contains('@')) {
-                        return 'Email must contain @ symbol';
+                        return AppLocalizations.of(context)!.emailMustContain;
                       }
+
                       return null;
                     },
-                    decoration: InputDecoration(labelText: 'Email'),
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.email,
+                    ),
                   ),
+
                   TextFormField(
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
+                        return AppLocalizations.of(context)!.fieldRequired;
                       } else if (value.length < 6) {
-                        return 'Password must be at least 6 characters long';
+                        return AppLocalizations.of(context)!.passwordMinLength;
                       }
+
                       return null;
                     },
                     onChanged: (value) {
                       password = value;
                     },
-                    decoration: InputDecoration(labelText: 'Password'),
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.password,
+                    ),
                   ),
+
                   TextFormField(
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please confirm your password';
+                        return AppLocalizations.of(context)!.fieldRequired;
                       } else if (value != password) {
-                        return 'Passwords do not match';
+                        return AppLocalizations.of(
+                          context,
+                        )!.passwordsDoNotMatch;
                       }
+
                       return null;
                     },
-                    decoration: InputDecoration(labelText: 'Confirm Password'),
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.confirmPassword,
+                    ),
                   ),
-                  SizedBox(height: 20),
+
+                  const SizedBox(height: 20),
+
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFC7A0BF),
+                      backgroundColor: const Color(0xFFC7A0BF),
                       foregroundColor: Colors.white,
-                      fixedSize: Size(150, 40),
+                      fixedSize: const Size(150, 40),
                     ),
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         showDialog(
                           context: context,
-                          builder: ((context) {
+                          builder: (dialogContext) {
                             return AlertDialog(
-                              content: Text('Account created successfully'),
+                              content: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.successfulRegistration,
+                              ),
                               actions: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) => ShoppingScreen(),
-                                      ),
-                                    );
+                                    Navigator.of(dialogContext).pop();
+                                    _goToShoppingScreen();
                                   },
-                                  child: Text('OK'),
+                                  child: Text(AppLocalizations.of(context)!.ok),
                                 ),
                               ],
                             );
-                          }),
+                          },
                         );
                       }
                     },
-                    child: Text('Sign Up'),
+                    child: Text(AppLocalizations.of(context)!.signUp),
                   ),
                 ],
               ),

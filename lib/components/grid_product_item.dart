@@ -37,7 +37,11 @@ class GridProductItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.only(
+                  left: 15.0,
+                  right: 15.0,
+                  bottom: 10.0,
+                ),
                 child: ProductPrice(price: product.price.toStringAsFixed(2)),
               ),
               AddToCartButton(),

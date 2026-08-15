@@ -2,6 +2,7 @@ import 'package:first_flutter_project/components/custom_grid_vew.dart';
 import 'package:first_flutter_project/components/custom_shopping_label.dart';
 import 'package:first_flutter_project/components/products_list_view.dart';
 import 'package:first_flutter_project/components/products_page_view.dart';
+import 'package:first_flutter_project/l10n/app_localizations.dart';
 import 'package:first_flutter_project/models/product.dart';
 import 'package:flutter/material.dart';
 
@@ -57,9 +58,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFC7A0BF),
-        title: const Text(
-          'Products',
-          style: TextStyle(
+        title: Text(
+          AppLocalizations.of(context)!.products,
+          style: const TextStyle(
             fontFamily: 'Suwannaphum',
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -69,21 +70,25 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: 
-        Column(children: [  CustomShopppingLabel(text: 'Our Products'),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: width < 600 ? 200 : 400,
-              child: ProductsPageView(products: products),
+        child: Column(
+          children: [
+            CustomShopppingLabel(
+              text: AppLocalizations.of(context)!.ourProducts,
             ),
-          ),
-          SizedBox(height: 10),
-          ProductsGridView(products: products),
-          CustomShopppingLabel(text: 'Hot Offers'),
-          SizedBox(height: 10),
-          ProductsListView(products: products),
-        ],)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: width < 600 ? 200 : 400,
+                child: ProductsPageView(products: products),
+              ),
+            ),
+            SizedBox(height: 10),
+            ProductsGridView(products: products),
+            CustomShopppingLabel(text: AppLocalizations.of(context)!.hotOffers),
+            SizedBox(height: 10),
+            ProductsListView(products: products),
+          ],
+        ),
       ),
     );
   }
