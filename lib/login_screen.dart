@@ -1,34 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_flutter_project/components/custom_text_field.dart';
 import 'package:first_flutter_project/l10n/app_localizations.dart';
-import 'package:first_flutter_project/login_screen.dart';
 import 'package:first_flutter_project/shopping_screen.dart';
+import 'package:first_flutter_project/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController emailCntrl = TextEditingController();
-  TextEditingController passCntrl = TextEditingController();
-
-  // Keep the confirm field synced with the entered password.
-  String? _validateName(String? value) {
-    final l10n = AppLocalizations.of(context)!;
-    if (value == null || value.trim().isEmpty) {
-      return l10n.fieldRequired;
-    }
-    if (!value.trim().startsWith(RegExp(r'[A-Z]'))) {
-      return l10n.nameMustStartCapital;
-    }
-    return null;
-  }
+  final emailCntrl = TextEditingController();
+  final passCntrl = TextEditingController();
 
   String? _validateEmail(String? value) {
     final l10n = AppLocalizations.of(context)!;
@@ -48,17 +36,6 @@ class _SignUpPageState extends State<SignUpPage> {
     }
     if (value.length < 6) {
       return l10n.passwordMinLength;
-    }
-    return null;
-  }
-
-  String? _validateConfirmPassword(String? value) {
-    final l10n = AppLocalizations.of(context)!;
-    if (value == null || value.isEmpty) {
-      return l10n.fieldRequired;
-    }
-    if (value != passCntrl.text) {
-      return l10n.passwordsDoNotMatch;
     }
     return null;
   }
@@ -83,18 +60,16 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  // Only continue after all fields pass validation.
   Future<void> _submitForm() async {
     if (formKey.currentState!.validate()) {
       try {
-        final userCred = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-              email: emailCntrl.text,
-              password: passCntrl.text,
-            );
-
-        if (userCred.user != null) {
-          print(userCred.user?.email);
+        formKey.currentState!.validate();
+        final cred = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailCntrl.text,
+          password: passCntrl.text,
+        );
+        if (cred.user != null) {
+          print(cred.user?.email);
           showDialog(
             context: context,
             builder: (dialogContext) {
@@ -124,6 +99,13 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   @override
+  void dispose() {
+    emailCntrl.dispose();
+    passCntrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
@@ -136,9 +118,9 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  l10n.signUp,
-                  style: const TextStyle(
+                const Text(
+                  'Login',
+                  style: TextStyle(
                     fontFamily: 'Suwannaphum',
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -146,8 +128,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                CustomTextField(label: l10n.fullName, validator: _validateName),
-                const SizedBox(height: 12),
                 CustomTextField(
                   label: l10n.email,
                   validator: _validateEmail,
@@ -160,27 +140,22 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: passCntrl,
                   obscureText: true,
                 ),
-                const SizedBox(height: 12),
-                CustomTextField(
-                  label: l10n.confirmPassword,
-                  validator: _validateConfirmPassword,
-                  obscureText: true,
-                ),
+
                 const SizedBox(height: 24),
                 InkWell(
-                  onTap: () {
+                  onTap: (){
                     Navigator.pop(context);
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return LoginPage();
-                        },
-                      ),
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return SignUpPage();
+                      },
+                    ),
                     );
                   },
                   child: Text(
-                    "Already have account? Login Instead",
+                    "Don't have account? Sign Up Instead",
                     style: TextStyle(decoration: TextDecoration.underline),
                   ),
                 ),
@@ -192,7 +167,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     fixedSize: const Size(150, 40),
                   ),
                   onPressed: _submitForm,
-                  child: Text(l10n.signUp),
+                  child: const Text('Login'),
                 ),
               ],
             ),
