@@ -12,7 +12,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signUp => 'تسجيل';
 
   @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get noAccountSignUp => 'ليس لديك حساب؟ سجل الآن';
+
+  @override
+  String get alreadyHaveAccountLoginInstead =>
+      'لديك حساب بالفعل؟ سجل الدخول بدلاً من ذلك';
+
+  @override
   String get fullName => 'الاسم الكامل';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get age => 'العمر';
+
+  @override
+  String get hobby => 'الهواية';
+
+  @override
+  String get favouriteHobby => 'الهواية المفضلة';
+
+  @override
+  String get saveData => 'حفظ البيانات';
+
+  @override
+  String get dataSaved => 'تم الحفظ!';
+
+  @override
+  String get displayData => 'عرض البيانات';
 
   @override
   String get email => 'البريد الإلكتروني';
@@ -40,6 +71,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get successfulRegistration => 'تم إنشاء الحساب بنجاح';
+
+  @override
+  String get successfulLogin => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get unknownError => 'حدث خطأ غير معروف';
 
   @override
   String get ok => 'حسناً';

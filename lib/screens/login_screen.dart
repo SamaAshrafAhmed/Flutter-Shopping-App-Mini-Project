@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_flutter_project/components/auth_widgets.dart';
 import 'package:first_flutter_project/components/custom_text_field.dart';
 import 'package:first_flutter_project/l10n/app_localizations.dart';
-import 'package:first_flutter_project/shopping_screen.dart';
-import 'package:first_flutter_project/sign_up_screen.dart';
+import 'package:first_flutter_project/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -40,29 +40,10 @@ class _LoginPageState extends State<LoginPage> {
     return null;
   }
 
-  void _goToShoppingScreen() {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 800),
-        pageBuilder: (context, animation, secondaryAnimation) {
-          return const ShoppingScreen();
-        },
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeInOut,
-            ),
-            child: child,
-          );
-        },
-      ),
-    );
-  }
-
   Future<void> _submitForm() async {
     if (formKey.currentState!.validate()) {
       try {
+        // Firebase Authentication verifies the submitted account credentials.
         formKey.currentState!.validate();
         final cred = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailCntrl.text,
@@ -70,30 +51,20 @@ class _LoginPageState extends State<LoginPage> {
         );
         if (cred.user != null) {
           print(cred.user?.email);
-          showDialog(
+          showAuthSuccessDialog(
             context: context,
-            builder: (dialogContext) {
-              return AlertDialog(
-                content: Text(
-                  AppLocalizations.of(context)!.successfulRegistration,
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () async {
-                      Navigator.of(dialogContext).pop();
-                      _goToShoppingScreen();
-                    },
-                    child: Text(AppLocalizations.of(context)!.ok),
-                  ),
-                ],
-              );
-            },
+            message: AppLocalizations.of(context)!.successfulLogin,
+            okLabel: AppLocalizations.of(context)!.ok,
           );
         }
       } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(e.message ?? 'Unknown error')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              e.message ?? AppLocalizations.of(context)!.unknownError,
+            ),
+          ),
+        );
       }
     }
   }
@@ -118,15 +89,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Login',
-                  style: TextStyle(
-                    fontFamily: 'Suwannaphum',
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFA52489),
-                  ),
-                ),
+                AuthTitle(text: l10n.login),
                 const SizedBox(height: 20),
                 CustomTextField(
                   label: l10n.email,
@@ -142,33 +105,22 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(height: 24),
-                InkWell(
-                  onTap: (){
+                AuthNavigationLink(
+                  text: l10n.noAccountSignUp,
+                  onTap: () {
                     Navigator.pop(context);
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SignUpPage();
-                      },
-                    ),
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return SignUpPage();
+                        },
+                      ),
                     );
                   },
-                  child: Text(
-                    "Don't have account? Sign Up Instead",
-                    style: TextStyle(decoration: TextDecoration.underline),
-                  ),
                 ),
                 const SizedBox(height: 24),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFC7A0BF),
-                    foregroundColor: Colors.white,
-                    fixedSize: const Size(150, 40),
-                  ),
-                  onPressed: _submitForm,
-                  child: const Text('Login'),
-                ),
+                AuthSubmitButton(onPressed: _submitForm, label: l10n.login),
               ],
             ),
           ),

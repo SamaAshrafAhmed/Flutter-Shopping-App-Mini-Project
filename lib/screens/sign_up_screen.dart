@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_flutter_project/components/auth_widgets.dart';
 import 'package:first_flutter_project/components/custom_text_field.dart';
 import 'package:first_flutter_project/l10n/app_localizations.dart';
-import 'package:first_flutter_project/login_screen.dart';
-import 'package:first_flutter_project/shopping_screen.dart';
+import 'package:first_flutter_project/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -63,30 +63,11 @@ class _SignUpPageState extends State<SignUpPage> {
     return null;
   }
 
-  void _goToShoppingScreen() {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 800),
-        pageBuilder: (context, animation, secondaryAnimation) {
-          return const ShoppingScreen();
-        },
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeInOut,
-            ),
-            child: child,
-          );
-        },
-      ),
-    );
-  }
-
   // Only continue after all fields pass validation.
   Future<void> _submitForm() async {
     if (formKey.currentState!.validate()) {
       try {
+        // Firebase Authentication creates the account after local validation.
         final userCred = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
               email: emailCntrl.text,
@@ -95,30 +76,20 @@ class _SignUpPageState extends State<SignUpPage> {
 
         if (userCred.user != null) {
           print(userCred.user?.email);
-          showDialog(
+          showAuthSuccessDialog(
             context: context,
-            builder: (dialogContext) {
-              return AlertDialog(
-                content: Text(
-                  AppLocalizations.of(context)!.successfulRegistration,
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () async {
-                      Navigator.of(dialogContext).pop();
-                      _goToShoppingScreen();
-                    },
-                    child: Text(AppLocalizations.of(context)!.ok),
-                  ),
-                ],
-              );
-            },
+            message: AppLocalizations.of(context)!.successfulRegistration,
+            okLabel: AppLocalizations.of(context)!.ok,
           );
         }
       } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(e.message ?? 'Unknown error')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              e.message ?? AppLocalizations.of(context)!.unknownError,
+            ),
+          ),
+        );
       }
     }
   }
@@ -136,18 +107,9 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  l10n.signUp,
-                  style: const TextStyle(
-                    fontFamily: 'Suwannaphum',
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFA52489),
-                  ),
-                ),
+                AuthTitle(text: l10n.signUp),
                 const SizedBox(height: 20),
                 CustomTextField(label: l10n.fullName, validator: _validateName),
-                const SizedBox(height: 12),
                 CustomTextField(
                   label: l10n.email,
                   validator: _validateEmail,
@@ -167,7 +129,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   obscureText: true,
                 ),
                 const SizedBox(height: 24),
-                InkWell(
+                AuthNavigationLink(
+                  text: l10n.alreadyHaveAccountLoginInstead,
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.push(
@@ -179,21 +142,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     );
                   },
-                  child: Text(
-                    "Already have account? Login Instead",
-                    style: TextStyle(decoration: TextDecoration.underline),
-                  ),
                 ),
                 const SizedBox(height: 24),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFC7A0BF),
-                    foregroundColor: Colors.white,
-                    fixedSize: const Size(150, 40),
-                  ),
-                  onPressed: _submitForm,
-                  child: Text(l10n.signUp),
-                ),
+                AuthSubmitButton(onPressed: _submitForm, label: l10n.signUp),
               ],
             ),
           ),

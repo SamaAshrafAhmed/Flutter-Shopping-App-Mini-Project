@@ -104,11 +104,71 @@ abstract class AppLocalizations {
   /// **'Sign Up'**
   String get signUp;
 
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @noAccountSignUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? Sign Up Instead'**
+  String get noAccountSignUp;
+
+  /// No description provided for @alreadyHaveAccountLoginInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Login Instead'**
+  String get alreadyHaveAccountLoginInstead;
+
   /// No description provided for @fullName.
   ///
   /// In en, this message translates to:
   /// **'Full Name'**
   String get fullName;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get age;
+
+  /// No description provided for @hobby.
+  ///
+  /// In en, this message translates to:
+  /// **'Hobby'**
+  String get hobby;
+
+  /// No description provided for @favouriteHobby.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourite Hobby'**
+  String get favouriteHobby;
+
+  /// No description provided for @saveData.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Data'**
+  String get saveData;
+
+  /// No description provided for @dataSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved!'**
+  String get dataSaved;
+
+  /// No description provided for @displayData.
+  ///
+  /// In en, this message translates to:
+  /// **'Display Data'**
+  String get displayData;
 
   /// No description provided for @email.
   ///
@@ -163,6 +223,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Account created successfully'**
   String get successfulRegistration;
+
+  /// No description provided for @successfulLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in successfully'**
+  String get successfulLogin;
+
+  /// No description provided for @unknownError.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred'**
+  String get unknownError;
 
   /// No description provided for @ok.
   ///

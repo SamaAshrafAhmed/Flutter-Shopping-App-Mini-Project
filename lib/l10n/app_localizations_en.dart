@@ -12,7 +12,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUp => 'Sign Up';
 
   @override
+  String get login => 'Login';
+
+  @override
+  String get noAccountSignUp => 'Don\'t have an account? Sign Up Instead';
+
+  @override
+  String get alreadyHaveAccountLoginInstead =>
+      'Already have an account? Login Instead';
+
+  @override
   String get fullName => 'Full Name';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get age => 'Age';
+
+  @override
+  String get hobby => 'Hobby';
+
+  @override
+  String get favouriteHobby => 'Favourite Hobby';
+
+  @override
+  String get saveData => 'Save Data';
+
+  @override
+  String get dataSaved => 'Saved!';
+
+  @override
+  String get displayData => 'Display Data';
 
   @override
   String get email => 'Email';
@@ -40,6 +71,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get successfulRegistration => 'Account created successfully';
+
+  @override
+  String get successfulLogin => 'Logged in successfully';
+
+  @override
+  String get unknownError => 'An unknown error occurred';
 
   @override
   String get ok => 'OK';

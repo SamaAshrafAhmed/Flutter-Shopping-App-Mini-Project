@@ -1,24 +1,36 @@
 # First Flutter Project
 
-A Flutter shopping app with a sign-up form, shopping screen, responsive product grid, and Arabic/English localization using ARB files.
+A small Flutter shopping app with Firebase authentication, Firestore-backed personal information, product browsing, and English/Arabic localization.
 
-## Features
+## Included
 
-- Image and text screen
-- Shopping screen with product page view, grid, and hot offers list
-- Sign-up validation for name, email, password, and confirm password
-- Success dialog with fade transition to shopping screen
-- ARB localization for English and Arabic
-- Responsive layout using MediaQuery
+- Email/password sign-up and login with localized validation and dialogs
+- Personal information form with Firestore storage and live data display
+- Product page view, responsive grid, and hot offers list
+- Built-in Flutter localization using English and Arabic ARB files
 
-## Run the app
+## Setup
+
+1. Install Flutter and configure a Firebase project for the target platforms.
+2. Place the platform Firebase configuration files in the generated project locations.
+3. Fetch dependencies and generate localization files:
 
 ```bash
 flutter pub get
+flutter gen-l10n
+```
+
+## Run
+
+```bash
 flutter run
 ```
 
-## Notes
+## Quality checks
 
-- The app uses Flutter built-in localization.
-- The app follows the device system locale by default.
+```bash
+flutter analyze
+flutter test
+```
+
+Translations live in `lib/l10n/app_en.arb` and `lib/l10n/app_ar.arb`. Add new user-facing text there instead of hard-coding strings in widgets.
