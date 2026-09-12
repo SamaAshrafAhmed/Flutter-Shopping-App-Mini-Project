@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_flutter_project/l10n/app_localizations.dart';
 import 'package:first_flutter_project/shopping_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,9 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>();
-  String? password;
+
+  TextEditingController emailCntrl = TextEditingController();
+  TextEditingController passCntrl = TextEditingController();
 
   // Keep the confirm field synced with the entered password.
   String? _validateName(String? value) {
@@ -52,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if (value == null || value.isEmpty) {
       return l10n.fieldRequired;
     }
-    if (value != password) {
+    if (value != passCntrl.text) {
       return l10n.passwordsDoNotMatch;
     }
     return null;
@@ -79,31 +82,49 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   // Only continue after all fields pass validation.
-  void _submitForm() {
+  Future<void> _submitForm() async {
     if (formKey.currentState!.validate()) {
-      showDialog(
-        context: context,
-        builder: (dialogContext) {
-          return AlertDialog(
-            content: Text(AppLocalizations.of(context)!.successfulRegistration),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(dialogContext).pop();
-                  _goToShoppingScreen();
-                },
-                child: Text(AppLocalizations.of(context)!.ok),
-              ),
-            ],
+      try {
+        final userCred = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: emailCntrl.text,
+              password: passCntrl.text,
+            );
+
+        if (userCred.user != null) {
+          print(userCred.user?.email);
+          showDialog(
+            context: context,
+            builder: (dialogContext) {
+              return AlertDialog(
+                content: Text(
+                  AppLocalizations.of(context)!.successfulRegistration,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.of(dialogContext).pop();
+                      _goToShoppingScreen();
+                    },
+                    child: Text(AppLocalizations.of(context)!.ok),
+                  ),
+                ],
+              );
+            },
           );
-        },
-      );
+        }
+      } on FirebaseAuthException catch (e) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.message ?? 'Unknown error')));
+      }
     }
   }
 
   Widget _buildTextField({
     required String label,
     required String? Function(String?) validator,
+    TextEditingController? controller,
     bool obscureText = false,
     ValueChanged<String>? onChanged,
   }) {
@@ -111,6 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
       obscureText: obscureText,
       validator: validator,
       onChanged: onChanged,
+      controller: controller,
       decoration: InputDecoration(labelText: label),
     );
   }
@@ -140,13 +162,17 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 20),
                 _buildTextField(label: l10n.fullName, validator: _validateName),
                 const SizedBox(height: 12),
-                _buildTextField(label: l10n.email, validator: _validateEmail),
+                _buildTextField(
+                  label: l10n.email,
+                  validator: _validateEmail,
+                  controller: emailCntrl,
+                ),
                 const SizedBox(height: 12),
                 _buildTextField(
                   label: l10n.password,
                   validator: _validatePassword,
+                  controller: passCntrl,
                   obscureText: true,
-                  onChanged: (value) => password = value,
                 ),
                 const SizedBox(height: 12),
                 _buildTextField(
